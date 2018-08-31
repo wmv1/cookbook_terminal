@@ -1,3 +1,4 @@
+/Objeto receita /
 class Receita
     attr_reader :descricao, :preparo, :tipo 
     attr_writer :descricao, :preparo
@@ -9,7 +10,7 @@ class Receita
             @tipo
 
         end
-
+        /Método para definir o tipo do prato em string, poderia ser um array também/
         def tipo_prato(tipo)
             if tipo == 1
                 @tipo = "Entrada"    
@@ -20,15 +21,4 @@ class Receita
             end
             
         end
-        
-        def retorna_tipo
-            if  @tipo == "Entrada"
-                return 1
-            elsif @tipo == "Prato principal"
-                return 2
-            elsif @tipo == "Sobremesa"
-                return 3
-            end
-        end    
-            
-        end
+end
