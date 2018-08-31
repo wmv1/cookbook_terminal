@@ -32,7 +32,6 @@ def menu_tipo_receita(cadastrando)
         return gets.to_i
     end
 end
-
 def converte_tipo_prato(n)
     
     if n == 0
@@ -48,9 +47,32 @@ def converte_tipo_prato(n)
 end
 
 
+def salva_lista_txt(lista_receitas)
+    arquivo_json = File.open("./bd.txt","w")
+    arquivo_json.write(lista_receitas.to_json)
+    arquivo_json.close
+end
+
+
+receitas = Receitas.new
+
+def carrega_receitas_salvas(receitas)
+    if File.exists?("./bd.txt")
+    arquivo_json = File.read("./bd.txt")
+    hash = JSON.parse(arquivo_json)
+    hash["lista_de_receitas"].each do |receita|
+        r = Receita.new
+        r.descricao = receita["descricao"]
+        r.preparo = receita["preparo"]
+        r.tipo = receita["tipo"]
+        receitas.add_receita(r)
+    end
+    end
+end
     tarefas = []
     opcao =  menu_principal
-   receitas = Receitas.new
+
+    carrega_receitas_salvas(receitas)
 
     while opcao != 6 do
             if opcao == 1
@@ -66,6 +88,7 @@ end
                 receita.tipo_prato(menu_tipo_receita(true))
                if receitas.add_receita(receita)
                 print "Receita #{receita.descricao.chomp} cadastrada!"
+                salva_lista_txt(receitas)
                 sleep(1)
             
             end
@@ -111,6 +134,7 @@ end
                 puts
                 print "Digite o número da receita que deseja remover: "
                 receitas.remove_receita(gets.to_i)
+                salva_lista_txt(receitas)
                 
             end
      
@@ -125,5 +149,5 @@ end
      end
 
 
-     
+
 puts "Fuiii11"

@@ -1,0 +1,1 @@
+{"lista_de_receitas":[{"descricao":"sasdasdasd\n","preparo":"asdasda\n","tipo":"Prato principal"}]}

@@ -16,6 +16,8 @@ class Receitas < Receita
         @lista_de_receitas = Array.new  
     end
 
+
+
     def vazia 
         return @lista_de_receitas[0].nil?
     end

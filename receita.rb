@@ -1,7 +1,7 @@
 /Objeto receita /
 class Receita
     attr_reader :descricao, :preparo, :tipo 
-    attr_writer :descricao, :preparo
+    attr_writer :descricao, :preparo, :tipo
 
         def initialize()
 
